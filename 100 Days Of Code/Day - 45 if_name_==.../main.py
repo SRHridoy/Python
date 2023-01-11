@@ -1,0 +1,3 @@
+import hri
+
+hri.welcome()
