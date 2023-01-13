@@ -29,6 +29,7 @@ if(coding):
             nwords.append(word[::-1])
     print(" ".join(nwords))
 
+
 else:
     nwords = []
     for word in words:
