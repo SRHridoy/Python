@@ -46,11 +46,19 @@ print('Encoding is  Completed')
 
 """(SRH) -----------INITIALIZING WEB-CAM--------- (SRH)"""
 cap = cv2.VideoCapture(0)
+cap.set(10,100)
+"""(SRH) -----------ADDING-BACKGROUND--------- (SRH)"""
+cap.set(3,640)
+cap.set(4,480)
+imgBackground = cv2.imread('BackGround/hstu_bg.png')
 
 while True:
     success, img = cap.read()
     imgSmaller = cv2.resize(img,(0,0),None,0.25,0.25)
     imgSmaller = cv2.cvtColor(imgSmaller, cv2.COLOR_BGR2RGB)
+    imgBackground[200:200+480,70:70+640] = img
+
+
 
 #FINDING ENCODING OF OUR WEBCAM:
     facesCurFrame = face_recognition.face_locations(imgSmaller)
@@ -73,5 +81,6 @@ while True:
             cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,355,255),2)
             markAttendence(name)
 
-    cv2.imshow('webcam',img)
+   # cv2.imshow('HSTU AUTOMETIC ATTENDENCE',img)
+    cv2.imshow('HSTU AUTOMATIC ATTENDENCE',imgBackground)
     cv2.waitKey(1)
