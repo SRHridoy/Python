@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import face_recognition
 import os
-from  datetime import datetime
+from  datetime import date
 
 """(SRH) -----------ARRANGING IMAGES AUTOMARICALLY--------- (SRH)"""
 path = 'ImagesAttendence'
@@ -28,16 +28,19 @@ def findEncodings(images):
 
 """(SRH) -----------MARKING ATTENDENCE--------- (SRH)"""
 def markAttendence(name):
-    with open('Attendence.csv','r+') as f:
+    with open('HSTU ATTENDENCE SHEET.csv','r+') as f:
         myDataList = f.readlines()
         nameList = []
         for line in myDataList:
             entry = line.split(',')
             nameList.append(entry[0])
         if name not in nameList:
-            now = datetime.now()
-            dateTimeString = now.strftime('%H:%M:%S')
-            f.writelines(f'\n{name},{dateTimeString}')
+            today = date.today()
+            #now = datetime.now()
+            #dateTimeString = now.strftime('%H:%M:%S')
+            #dateTimeString = now.strftime('%H:%M:%S')
+            #f.writelines(f'\n{name},{dateTimeString}')
+            f.writelines(f'\n{name},{today}')
 
 #markAttendence('Hridoy')
 
@@ -46,17 +49,11 @@ print('Encoding is  Completed')
 
 """(SRH) -----------INITIALIZING WEB-CAM--------- (SRH)"""
 cap = cv2.VideoCapture(0)
-cap.set(10,100)
-"""(SRH) -----------ADDING-BACKGROUND--------- (SRH)"""
-cap.set(3,640)
-cap.set(4,480)
-imgBackground = cv2.imread('BackGround/hstu_bg.png')
 
 while True:
     success, img = cap.read()
     imgSmaller = cv2.resize(img,(0,0),None,0.25,0.25)
     imgSmaller = cv2.cvtColor(imgSmaller, cv2.COLOR_BGR2RGB)
-    imgBackground[200:200+480,70:70+640] = img
 
 
 
@@ -81,6 +78,5 @@ while True:
             cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,355,255),2)
             markAttendence(name)
 
-   # cv2.imshow('HSTU AUTOMETIC ATTENDENCE',img)
-    cv2.imshow('HSTU AUTOMATIC ATTENDENCE',imgBackground)
+    cv2.imshow('HSTU AUTOMETIC ATTENDENCE SYSTEM',img)
     cv2.waitKey(1)
