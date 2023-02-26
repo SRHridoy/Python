@@ -95,7 +95,8 @@ or """ this is also worked"""
 
 '''
 
-print("Hey", 6, 8, sep="_", end = "\n007")
+print("Hey", 6, 8, sep="_", end = "/007")
 print("Coder")
+
 
 
