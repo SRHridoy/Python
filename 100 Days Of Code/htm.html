@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Application Submitted</title>
+    {% include 'bootstrap.html' %}
+    {% include 'glowing.html' %}
+</head>
+
+<body>
+    {% include 'nav.html' %}
+    {% include 'banner.html' %}
+    <div class="container">
+        <h1 class="text-center mt-2 mb-4 glow" font-size=50px>HSTU Alumni Emplyment Solutions</h1>
+        <h4> Your Full Name : </h4>
+        <div>{{application['full_name']}}</div>
+
+        <h4>Your Email Address : </h4>
+        <div>{{application['email']}}</div>
+
+        <h4>Your LinkedIn URL : </h4>
+        <div>{{application['linkedin_url']}}</div>
+
+        <h4>Edicational Experiences : </h4>
+        <div>{{application['education']}}</div>
+
+        <h4>Working Experience : </h4>
+        <div>{{application['email']}}</div>
+
+        <h4>Your Resume URL : </h4>
+        <div>{{application['resume_url']}}</div>
+
+        <h4>Your Phone Number : </h4>
+        <div>{{application['number']}}</div>
+
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+
+</html>
